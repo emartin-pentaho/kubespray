@@ -29,7 +29,7 @@ SUPPORTED_OS = {
 }
 
 # Defaults for config options defined in CONFIG
-$num_instances = 3
+$num_instances = 1
 $instance_name_prefix = "k8s"
 $vm_gui = false
 $vm_memory = 2048
@@ -37,7 +37,7 @@ $vm_cpus = 1
 $shared_folders = {}
 $forwarded_ports = {}
 $subnet = "172.17.8"
-$os = "ubuntu1804"
+$os = "centos-bento"
 $network_plugin = "flannel"
 # Setting multi_networking to true will install Multus: https://github.com/intel/multus-cni
 $multi_networking = false
@@ -128,6 +128,7 @@ Vagrant.configure("2") do |config|
       end
 
       node.vm.provider :virtualbox do |vb|
+        vb.name = vm_name
         vb.memory = $vm_memory
         vb.cpus = $vm_cpus
         vb.gui = $vm_gui
